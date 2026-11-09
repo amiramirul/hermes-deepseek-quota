@@ -1,0 +1,15 @@
+name: deepseek-quota
+label: DeepSeek Quota
+kind: standalone
+version: 1.0.0
+author: Amir
+description: >
+  Backend for the deepseek-quota desktop chip: reads the DeepSeek account
+  balance from api.deepseek.com/user/balance and the local 7-day token/cost
+  history from state.db, then reports the balance, the estimated tokens left
+  and today's spend. The secret stays on the backend; the chip only sees JSON.
+requires_env:
+  - name: DEEPSEEK_API_KEY
+    description: "DeepSeek API key (balance + quota readout)"
+    prompt: "DeepSeek API key"
+    password: true

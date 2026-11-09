@@ -1,0 +1,9 @@
+{
+  "name": "deepseek-quota",
+  "label": "DeepSeek Quota",
+  "description": "DeepSeek balance / token-quota readout for the desktop status bar chip",
+  "icon": "Sparkles",
+  "version": "1.0.0",
+  "slots": [],
+  "api": "plugin_api.py"
+}
