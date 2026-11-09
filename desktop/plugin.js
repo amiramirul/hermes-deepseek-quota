@@ -44,14 +44,14 @@ function QuotaChip({ ctx }) {
 
   const tip = ok
     ? [
-        `DeepSeek: ${fmtUsd(balance)} baki`,
-        `≈${fmtToken(data.tokens_left)} token tinggal`,
-        `guna hari ni ${fmtUsd(data.spent_today ?? 0)}`,
-        `7 hari ${fmtUsd(data.spent_7d ?? 0)}`
+        `DeepSeek: ${fmtUsd(balance)} left`,
+        `≈${fmtToken(data.tokens_left)} tokens left`,
+        `today ${fmtUsd(data.spent_today ?? 0)}`,
+        `7d ${fmtUsd(data.spent_7d ?? 0)}`
       ].join(' · ')
     : data && data.error
-      ? `DeepSeek: ${data.error} — klik untuk cuba lagi`
-      : 'DeepSeek: menyemak baki…'
+      ? `DeepSeek: ${data.error} — click to retry`
+      : 'DeepSeek: checking balance…'
 
   return jsx(Tip, {
     label: tip,
@@ -68,7 +68,7 @@ function QuotaChip({ ctx }) {
         if (ok) {
           host.notify({
             kind: balance > data.peak * 0.2 ? 'info' : 'warning',
-            message: `DeepSeek ${fmtUsd(balance)} baki · ≈${fmtToken(data.tokens_left)} token · hari ni ${fmtUsd(data.spent_today ?? 0)}`
+            message: `DeepSeek ${fmtUsd(balance)} left · ≈${fmtToken(data.tokens_left)} tokens · today ${fmtUsd(data.spent_today ?? 0)}`
           })
         }
       },

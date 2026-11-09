@@ -2,7 +2,7 @@ name: deepseek-quota
 label: DeepSeek Quota
 kind: standalone
 version: 1.0.0
-author: Amir
+author: Amir (@amiramirul)
 description: >
   Backend for the deepseek-quota desktop chip: reads the DeepSeek account
   balance from api.deepseek.com/user/balance and the local 7-day token/cost

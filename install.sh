@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Pasang chip "DeepSeek quota" ke Hermes desktop pada mesin ni.
-#   ./install.sh          # pasang / kemas kini
-#   ./install.sh --remove  # buang
+# Install the DeepSeek Quota chip into a local Hermes desktop install.
+#   ./install.sh            # install / update
+#   ./install.sh --remove   # uninstall
 set -euo pipefail
 
 ID="deepseek-quota"
@@ -11,7 +11,7 @@ SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ "${1:-}" = "--remove" ]; then
   rm -rf "$H/plugins/$ID" "$H/desktop-plugins/$ID"
   hermes plugins disable "$ID" >/dev/null 2>&1 || true
-  echo "dibuang: $H/plugins/$ID dan $H/desktop-plugins/$ID"
+  echo "removed: $H/plugins/$ID and $H/desktop-plugins/$ID"
   exit 0
 fi
 
@@ -21,9 +21,9 @@ cp "$SRC/dashboard/manifest.json" "$SRC/dashboard/plugin_api.py" "$H/plugins/$ID
 cp "$SRC/desktop/plugin.js" "$H/desktop-plugins/$ID/plugin.js"
 
 if ! grep -q "^DEEPSEEK_API_KEY=" "$H/.env" 2>/dev/null; then
-  echo "!! DEEPSEEK_API_KEY tak dijumpai dalam $H/.env — chip akan tunjuk '—' sampai key dimasukkan." >&2
+  echo "!! DEEPSEEK_API_KEY not found in $H/.env — the chip will show '—' until it is set." >&2
 fi
 
 hermes plugins enable "$ID" >/dev/null 2>&1 || hermes plugins enable "$ID"
-echo "siap: $H/plugins/$ID + $H/desktop-plugins/$ID"
-echo "chip muncul dalam status bar bawah dalam beberapa saat (kalau tak, ⌘K → Reload desktop plugins)."
+echo "installed: $H/plugins/$ID + $H/desktop-plugins/$ID"
+echo "The chip appears in the status bar within a few seconds (if not: Cmd+K -> Reload desktop plugins)."
